@@ -7,7 +7,7 @@ abstract class Twocheckout
     public static $format = "json";
     public static $apiBaseUrl = "https://www.2checkout.com/api/";
     public static $error;
-    const VERSION = '0.1.0';
+    const VERSION = '0.1.1';
 
     static function setCredentials($user, $pass)
     {

@@ -13,7 +13,7 @@ class TestCharge extends PHPUnit_Framework_TestCase
     'li_0_name' => 'Test Product',
     'li_0_price' => '0.01'
     );
-    $test = '<form id="2checkout" action="https://www.2checkout.com/checkout/spurchase" method="post">' +
+    $test = '<form id="2checkout" action="https://www.2checkout.com/checkout/purchase" method="post">' +
               '<input type="hidden" name="sid" value="1817037"/>' +
               '<input type="hidden" name="mode" value="2CO"/>' +
               '<input type="hidden" name="li_0_name" value="Test Product"/>' +
@@ -32,7 +32,7 @@ class TestCharge extends PHPUnit_Framework_TestCase
     'li_0_name' => 'Test Product',
     'li_0_price' => '0.01'
     );
-    $test = '<form id="2checkout" action="https://www.2checkout.com/checkout/spurchase" method="post">' +
+    $test = '<form id="2checkout" action="https://www.2checkout.com/checkout/purchase" method="post">' +
               '<input type="hidden" name="sid" value="1817037"/>' +
               '<input type="hidden" name="mode" value="2CO"/>' +
               '<input type="hidden" name="li_0_name" value="Test Product"/>' +
@@ -51,7 +51,7 @@ class TestCharge extends PHPUnit_Framework_TestCase
     'li_0_name' => 'Test Product',
     'li_0_price' => '0.01'
     );
-    $test = 'https://www.2checkout.com/checkout/spurchase?sid=1817037&amp;mode=2CO&amp;li_0_name=Test+Product&amp;li_0_price=0.01';
+    $test = 'https://www.2checkout.com/checkout/purchase?sid=1817037&amp;mode=2CO&amp;li_0_name=Test+Product&amp;li_0_price=0.01';
     $result = Twocheckout_Charge::link($params);
     $this->assertEquals($test, $result);
   }
