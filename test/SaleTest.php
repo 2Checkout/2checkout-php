@@ -37,7 +37,7 @@ class TestSale extends PHPUnit_Framework_TestCase
       $sale = Twocheckout_Sale::refund($params, 'array');
       $this->assertEquals("OK", sizeof($sale['response_code'])); 
     } catch (Twocheckout_Error $e) {
-      $this->assertEquals("Invoice was already refunded.", $e->getMessage()); 
+      $this->assertEquals("Invoice too old to refund.", $e->getMessage());
     }
   }
 
