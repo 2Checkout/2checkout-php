@@ -1,5 +1,5 @@
 {
-    "name": "2Checkout/2checkout-php",
+    "name": "2checkout/2checkout-php",
     "type": "library",
     "description": "2Checkout PHP Library",
     "keywords": ["2Checkout","2co","payment","gateway"],
@@ -9,12 +9,13 @@
         {
             "name": "Craig Christenson",
             "email": "christensoncraig@gmail.com",
-            "homepage": "https://github.com/craigchristenson",
-            "role": "Developer"            
+            "homepage": "https://github.com/craigchristenson"
         }
     ],
     "require": {
-        "php": ">=5.0.0"
+        "php": ">=5.2.0",
+        "ext-curl": "*",
+        "ext-json": "*"
     },
     "autoload": {
         "psr-0": {
