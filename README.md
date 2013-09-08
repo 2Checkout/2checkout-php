@@ -6,7 +6,7 @@ This library provides developers with a simple set of bindings to the 2Checkout 
 To use, download or clone the repository.
 
 ```shell
-git clone https://github.com/2checkout/2checkout-php.git
+git clone https://github.com/2Checkout/2checkout-php.git
 ```
 
 Require in your php script.
@@ -143,7 +143,7 @@ $params = array(
 try {
   $sale = Twocheckout_Sale::refund($params, 'array');
 } catch (Twocheckout_Error $e) {
-  $e->getMessage());
+  $e->getMessage();
 }
 ```
 
