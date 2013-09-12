@@ -1,6 +1,8 @@
 2Checkout PHP Library
 =====================
 
+[![Build Status](https://travis-ci.org/necromant2005/2checkout-php.png?branch=master)](https://travis-ci.org/necromant2005/2checkout-php)
+
 This library provides developers with a simple set of bindings to the 2Checkout purchase routine, Instant Notification Service and Back Office API.
 
 To use, download or clone the repository.
