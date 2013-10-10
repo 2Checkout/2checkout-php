@@ -26,7 +26,11 @@ class Twocheckout_Api_Requester
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         $resp = curl_exec($ch);
         curl_close($ch);
-		return $resp;
+        if ($resp === FALSE) {
+            throw new Twocheckout_Error("cURL call failed", "403");
+        } else {
+            return $resp;
+        }
 	}
 
 }
