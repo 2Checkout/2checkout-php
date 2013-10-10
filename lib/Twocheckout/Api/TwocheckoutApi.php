@@ -3,6 +3,7 @@
 class Twocheckout_Api_Requester
 {
     public $apiBaseUrl;
+    public $environment;
     private $user;
     private $pass;
 
@@ -10,12 +11,16 @@ class Twocheckout_Api_Requester
             $this->user = Twocheckout::$user;
             $this->pass = Twocheckout::$pass;
             $this->apiBaseUrl = Twocheckout::$apiBaseUrl;
+            $this->environment = Twocheckout::$environment;
     }
 
 	function do_call($urlSuffix, $data=array())
     {
         $url = $this->apiBaseUrl . $urlSuffix;
         $ch = curl_init($url);
+        if ($this->environment === "development") {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        }
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
         curl_setopt($ch, CURLOPT_USERAGENT, "2Checkout PHP/0.1.0%s");

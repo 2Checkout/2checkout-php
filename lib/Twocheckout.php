@@ -6,13 +6,15 @@ abstract class Twocheckout
     public static $pass;
     public static $format = "json";
     public static $apiBaseUrl = "https://www.2checkout.com/api/";
+    public static $environment;
     public static $error;
     const VERSION = '0.1.2';
 
-    static function setCredentials($user, $pass)
+    static function setCredentials($user, $pass, $environment="production")
     {
         self::$user = $user;
         self::$pass = $pass;
+        self::$environment = $environment;
     }
 }
 
