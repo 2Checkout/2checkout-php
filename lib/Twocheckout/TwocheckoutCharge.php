@@ -3,9 +3,9 @@
 class Twocheckout_Charge extends Twocheckout
 {
 
-    public static function form($params, $type='Checkout')
+    public static function form($params, $type='Checkout', $checkout_type='purchase')
     {
-        echo '<form id="2checkout" action="https://www.2checkout.com/checkout/purchase" method="post">';
+        echo '<form id="2checkout" action="https://www.2checkout.com/checkout/' . $checkout_type . '" method="post">';
 
         foreach ($params as $key => $value)
         {
