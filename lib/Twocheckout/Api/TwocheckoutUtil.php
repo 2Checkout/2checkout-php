@@ -66,6 +66,8 @@ class Twocheckout_Util
     {
         if (isset($contents['errors'])) {
             throw new Twocheckout_Error($contents['errors'][0]['message']);
+        } elseif (isset($contents['exception'])) {
+            throw new Twocheckout_Error($contents['exception']['errorMsg'], $contents['exception']['errorCode']);
         }
     }
 

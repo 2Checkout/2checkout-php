@@ -19,13 +19,128 @@ JSON is returned by default or you can add 'array' as an additional argument to 
 **Example:**
 ```php
 <?php
-Twocheckout_Sale::refund($args, 'array');
+Twocheckout_Charge::auth($args, 'array');
 ```
 
 Full documentation for each binding is provided in the [Wiki](https://github.com/2checkout/2checkout-php/wiki).
 
+Example Purchase API Usage
+-----------------
 
-Example API Usage
+*Example Request:*
+
+```php
+<?php
+Twocheckout::setApiCredentials('532001', '9999999');
+try {
+    $charge = Twocheckout_Charge::auth(array(
+        "sellerId" => "532001",
+        "merchantOrderId" => "123",
+        "token" => 'Y2U2OTdlZjMtOGQzMi00MDdkLWJjNGQtMGJhN2IyOTdlN2Ni',
+        "currency" => 'USD',
+        "total" => '10.00',
+        "billingAddr" => array(
+            "name" => 'Testing Tester',
+            "addrLine1" => '123 Test St',
+            "city" => 'Columbus',
+            "state" => 'OH',
+            "zipCode" => '43123',
+            "country" => 'USA',
+            "email" => 'testingtester@2co.com',
+            "phoneNumber" => '555-555-5555'
+        ),
+        "shippingAddr" => array(
+            "name" => 'Testing Tester',
+            "addrLine1" => '123 Test St',
+            "city" => 'Columbus',
+            "state" => 'OH',
+            "zipCode" => '43123',
+            "country" => 'USA',
+            "email" => 'testingtester@2co.com',
+            "phoneNumber" => '555-555-5555'
+        )
+    ), 'array');
+    $this->assertEquals('APPROVED', $charge['response']['responseCode']);
+} catch (Twocheckout_Error $e) {
+    $this->assertEquals('Unauthorized', $e->getMessage());
+}
+```
+
+*Example Response:*
+
+```php
+Array
+(
+    [validationErrors] =>
+    [exception] =>
+    [response] => Array
+        (
+            [type] => AuthResponse
+            [lineItems] => Array
+                (
+                    [0] => Array
+                        (
+                            [options] => Array
+                                (
+                                )
+
+                            [price] => 10.00
+                            [quantity] => 1
+                            [recurrence] =>
+                            [startupFee] =>
+                            [productId] =>
+                            [tangible] => N
+                            [name] => 123
+                            [type] => product
+                            [description] =>
+                            [duration] =>
+                        )
+
+                )
+
+            [transactionId] => 205181140830
+            [billingAddr] => Array
+                (
+                    [addrLine1] => 123 Test St
+                    [addrLine2] =>
+                    [city] => Columbus
+                    [zipCode] => 43123
+                    [phoneNumber] => 555-555-5555
+                    [phoneExtension] =>
+                    [email] => testingtester@2co.com
+                    [name] => Testing Tester
+                    [state] => OH
+                    [country] => USA
+                )
+
+            [shippingAddr] => Array
+                (
+                    [addrLine1] => 123 Test St
+                    [addrLine2] =>
+                    [city] => Columbus
+                    [zipCode] => 43123
+                    [phoneNumber] =>
+                    [phoneExtension] =>
+                    [email] =>
+                    [name] => Testing Tester
+                    [state] => OH
+                    [country] => USA
+                )
+
+            [merchantOrderId] => 123
+            [orderNumber] => 205181140821
+            [recurrentInstallmentId] =>
+            [responseMsg] => Successfully authorized the provided credit card
+            [responseCode] => APPROVED
+            [total] => 10.00
+            [currencyCode] => USD
+            [errors] =>
+        )
+
+)
+```
+
+Example Admin API Usage
 -----------------
 
 *Example Request:*

@@ -129,4 +129,40 @@ class TestCharge extends PHPUnit_Framework_TestCase
         $this->assertEquals($test, $result);
     }
 
+    public function testChargeAuth()
+    {
+        Twocheckout::setApiCredentials('1817037', '9999999');
+        try {
+            $charge = Twocheckout_Charge::auth(array(
+                "sellerId" => "1817037",
+                "merchantOrderId" => "123",
+                "token" => 'Y2U2OTdlZjMtOGQzMi00MDdkLWJjNGQtMGJhN2IyOTdlN2Ni',
+                "currency" => 'USD',
+                "total" => '10.00',
+                "billingAddr" => array(
+                    "name" => 'Testing Tester',
+                    "addrLine1" => '123 Test St',
+                    "city" => 'Columbus',
+                    "state" => 'OH',
+                    "zipCode" => '43123',
+                    "country" => 'USA',
+                    "email" => 'testingtester@2co.com',
+                    "phoneNumber" => '555-555-5555'
+                ),
+                "shippingAddr" => array(
+                    "name" => 'Testing Tester',
+                    "addrLine1" => '123 Test St',
+                    "city" => 'Columbus',
+                    "state" => 'OH',
+                    "zipCode" => '43123',
+                    "country" => 'USA',
+                    "email" => 'testingtester@2co.com',
+                    "phoneNumber" => '555-555-5555'
+                )
+            ), 'array');
+            $this->assertEquals('APPROVED', $charge['response']['responseCode']);
+        } catch (Twocheckout_Error $e) {
+            $this->assertEquals('Unauthorized', $e->getMessage());
+        }
+    }
 }

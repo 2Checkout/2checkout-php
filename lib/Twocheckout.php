@@ -6,14 +6,29 @@ abstract class Twocheckout
     public static $pass;
     public static $format = "json";
     public static $apiBaseUrl = "https://www.2checkout.com/api/";
+    public static $sid;
+    public static $privateKey;
+    public static $apiUrl;
     public static $environment;
     public static $error;
-    const VERSION = '0.1.2';
+    const VERSION = '0.2.0';
 
     static function setCredentials($user, $pass, $environment="production")
     {
         self::$user = $user;
         self::$pass = $pass;
+        self::$environment = $environment;
+    }
+
+    static function setApiCredentials($sid, $privateKey, $mode='', $environment="production")
+    {
+        self::$sid = $sid;
+        self::$privateKey = $privateKey;
+        if ($mode == 'sandbox') {
+            self::$apiUrl = 'https://sandbox.2checkout.com/checkout/api/1/'.$sid.'/rs/authService';
+        } else {
+            self::$apiUrl = 'https://www.2checkout.com/checkout/api/1/'.$sid.'/rs/authService';
+        }
         self::$environment = $environment;
     }
 }

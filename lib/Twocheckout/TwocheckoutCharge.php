@@ -58,4 +58,11 @@ class Twocheckout_Charge extends Twocheckout
         header("Location: $url");
     }
 
+    public static function auth($params=array())
+    {
+        $request = new Twocheckout_Api_Requester();
+        $result = $request->do_auth_call($params);
+        return Twocheckout_Util::return_resp($result, $format='array');
+    }
+
 }
