@@ -31,10 +31,10 @@ Example Purchase API Usage
 
 ```php
 <?php
-Twocheckout::setApiCredentials('532001', '9999999');
+Twocheckout::setApiCredentials('1817037', '3508079E-5383-44D4-BF69-DC619C0D9811');
 try {
     $charge = Twocheckout_Charge::auth(array(
-        "sellerId" => "532001",
+        "sellerId" => "1817037",
         "merchantOrderId" => "123",
         "token" => 'Y2U2OTdlZjMtOGQzMi00MDdkLWJjNGQtMGJhN2IyOTdlN2Ni',
         "currency" => 'USD',
