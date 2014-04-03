@@ -6,7 +6,7 @@ class TestCoupon extends PHPUnit_Framework_TestCase
 {
   public function setUp()
   {
-    Twocheckout::setCredentials("APIuser1817037", "APIpass1817037");
+      Twocheckout::setCredentials("testlibraryapi901248204", "testlibraryapi901248204PASS", "sandbox");
   }
 
   public function testCouponListRetrieve()
@@ -34,17 +34,17 @@ class TestCoupon extends PHPUnit_Framework_TestCase
   public function testCouponRetrieve()
   {
     $params = array(
-    'coupon_code' => "7EBHJFP"
+    'coupon_code' => "1396528010"
     );
     $coupon = Twocheckout_Coupon::retrieve($params, 'array');
-    $this->assertEquals("7EBHJFP", $coupon['coupon']['coupon_code']);
+    $this->assertEquals("1396528010", $coupon['coupon']['coupon_code']);
   }
 
   public function testCouponUpdate()
   {
     $params = array(
       'date_expire' => "2020-01-01",
-      'coupon_code' => "7EBHJFP"
+      'coupon_code' => "1396528010"
     );
     $response = Twocheckout_Coupon::update($params, 'array');
     $this->assertEquals("Coupon updated successfully", $response['response_message']);

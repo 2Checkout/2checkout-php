@@ -6,16 +6,16 @@ class TestOption extends PHPUnit_Framework_TestCase
 {
   public function setUp()
   {
-    Twocheckout::setCredentials("APIuser1817037", "APIpass1817037");
+    Twocheckout::setCredentials("testlibraryapi901248204", "testlibraryapi901248204PASS", "sandbox");
   }         
 
   public function testOptionListRetrieve()
   {
     $params = array(
-      'pagesize' => 20
+      'pagesize' => 2
      );
     $options = Twocheckout_Option::retrieve($params, 'array');
-    $this->assertEquals(20, sizeof($options['options']));
+    $this->assertEquals(2, sizeof($options['options']));
   }
 
   public function testOptionCreate()
@@ -34,17 +34,17 @@ class TestOption extends PHPUnit_Framework_TestCase
   public function testOptionRetrieve()
   {
     $params = array(
-    'option_id' => 4774404362
+    'option_id' => 9093717691995
     );
     $product = Twocheckout_Option::retrieve($params, 'array');
-    $this->assertEquals("4774404362", $product['option'][0]['option_id']);
+    $this->assertEquals("9093717691995", $product['option'][0]['option_id']);
   }
 
   public function testOptionUpdate()
   {
     $params = array(
       'option_name' => "test1",
-      'option_id' => 4774404362
+      'option_id' => 9093717691995
     );
     $response = Twocheckout_Option::update($params, 'array');
     $this->assertEquals("Option updated successfully", $response['response_message']);

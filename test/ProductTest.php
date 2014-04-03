@@ -6,16 +6,16 @@ class TestProduct extends PHPUnit_Framework_TestCase
 {
   public function setUp()
   {
-    Twocheckout::setCredentials("APIuser1817037", "APIpass1817037");
+    Twocheckout::setCredentials("testlibraryapi901248204", "testlibraryapi901248204PASS", "sandbox");
   }
 
   public function testProductListRetrieve()
   {
     $params = array(
-      'pagesize' => 20
+      'pagesize' => 2
      );
     $products = Twocheckout_Product::retrieve($params, 'array');
-    $this->assertEquals(20, sizeof($products['products']));
+    $this->assertEquals(2, sizeof($products['products']));
   }
 
   public function testProductCreate()
@@ -33,17 +33,17 @@ class TestProduct extends PHPUnit_Framework_TestCase
   public function testProductRetrieve()
   {
     $params = array(
-    'product_id' => 4774387610
+    'product_id' => 9093717691932
     );
     $product = Twocheckout_Product::retrieve($params, 'array');
-    $this->assertEquals("4774387610", $product['product']['product_id']);
+    $this->assertEquals("9093717691932", $product['product']['product_id']);
   }
 
   public function testProductUpdate()
   {
     $params = array(
       'name' => "test",
-      'product_id' => 4774387610
+      'product_id' => 9093717691932
     );
     $response = Twocheckout_Product::update($params, 'array');
     $this->assertEquals("Product successfully updated", $response['response_message']);

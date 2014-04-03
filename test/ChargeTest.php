@@ -131,12 +131,12 @@ class TestCharge extends PHPUnit_Framework_TestCase
 
     public function testChargeAuth()
     {
-        Twocheckout::setApiCredentials('1817037', '9999999');
+        Twocheckout::setApiCredentials('901248204', 'BE632CB0-BB29-11E3-AFB6-D99C28100996', 'sandbox');
         try {
             $charge = Twocheckout_Charge::auth(array(
-                "sellerId" => "1817037",
+                "sellerId" => "901248204",
                 "merchantOrderId" => "123",
-                "token" => 'Y2U2OTdlZjMtOGQzMi00MDdkLWJjNGQtMGJhN2IyOTdlN2Ni',
+                "token" => 'MjFiYzIzYjAtYjE4YS00ZmI0LTg4YzYtNDIzMTBlMjc0MDlk',
                 "currency" => 'USD',
                 "total" => '10.00',
                 "billingAddr" => array(

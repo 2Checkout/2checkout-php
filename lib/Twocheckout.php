@@ -11,12 +11,15 @@ abstract class Twocheckout
     public static $apiUrl;
     public static $environment;
     public static $error;
-    const VERSION = '0.2.0';
+    const VERSION = '0.2.1';
 
-    static function setCredentials($user, $pass, $environment="production")
+    static function setCredentials($user, $pass, $mode='', $environment="production")
     {
         self::$user = $user;
         self::$pass = $pass;
+        if ($mode == 'sandbox') {
+            self::$apiBaseUrl = 'https://sandbox.2checkout.com/api/';
+        }
         self::$environment = $environment;
     }
 

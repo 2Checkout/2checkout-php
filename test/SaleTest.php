@@ -5,31 +5,31 @@ class TestSale extends PHPUnit_Framework_TestCase
 
   public function setUp()
   {
-  	Twocheckout::setCredentials("APIuser1817037", "APIpass1817037");
+  	Twocheckout::setCredentials("testlibraryapi901248204", "testlibraryapi901248204PASS", "sandbox");
   }
 
   public function testSaleRetrieve()
   {
     $params = array(
-    'sale_id' => 4774380224
+    'sale_id' => 9093717691800
     );
     $sale = Twocheckout_Sale::retrieve($params, 'array');
-    $this->assertEquals("4774380224", $sale['sale']['sale_id']);
+    $this->assertEquals("9093717691800", $sale['sale']['sale_id']);
   }
 
   public function testSaleRetrieveList()
   {
     $params = array(
-    'pagesize' => 20
+    'pagesize' => 2
     );
     $sale = Twocheckout_Sale::retrieve($params, 'array');
-    $this->assertEquals(20, sizeof($sale['sale_summary']));
+    $this->assertEquals(2, sizeof($sale['sale_summary']));
   }
 
   public function testSaleRefundSale()
   {
     $params = array(
-    'sale_id' => 4774380224,
+    'sale_id' => 9093717691800,
     'category' => 1,
     'comment' => 'Order never sent.'
     );
@@ -37,14 +37,14 @@ class TestSale extends PHPUnit_Framework_TestCase
       $sale = Twocheckout_Sale::refund($params, 'array');
       $this->assertEquals("OK", sizeof($sale['response_code'])); 
     } catch (Twocheckout_Error $e) {
-      $this->assertEquals("Invoice too old to refund.", $e->getMessage());
+      $this->assertEquals("Invoice was already refunded.", $e->getMessage());
     }
   }
 
   public function testSaleRefundLineitem()
   {
     $params = array(
-    'lineitem_id' => 4834917634,
+    'lineitem_id' => 9093717693210,
     'category' => 1,
     'comment' => 'Order never sent.'
     );
@@ -59,7 +59,7 @@ class TestSale extends PHPUnit_Framework_TestCase
   public function testSaleStopSale()
   {
     $params = array(
-    'sale_id' => 4834917619
+    'sale_id' => 9093717691800
     );
     try {
       $response = Twocheckout_Sale::stop($params, 'array');
@@ -72,7 +72,7 @@ class TestSale extends PHPUnit_Framework_TestCase
   public function testSaleStopLineitem()
   {
     $params = array(
-    'lineitem_id' => 4834917634
+    'lineitem_id' => 9093717693210
     );
     try {
       $response = Twocheckout_Sale::stop($params, 'array');
@@ -85,7 +85,7 @@ class TestSale extends PHPUnit_Framework_TestCase
   public function testSaleActive()
   {
     $params = array(
-    'sale_id' => 4834917619
+    'sale_id' => 9093717691800
     );
     try {
       $response = Twocheckout_Sale::active($params, 'array');
@@ -98,7 +98,7 @@ class TestSale extends PHPUnit_Framework_TestCase
   public function testSaleComment()
   {
     $params = array(
-    'sale_id' => 4774380224,
+    'sale_id' => 9093717691800,
     'sale_comment' => "test"
     );
     $result = Twocheckout_Sale::comment($params, 'array');
@@ -108,7 +108,7 @@ class TestSale extends PHPUnit_Framework_TestCase
   public function testSaleShip()
   {
     $params = array(
-    'sale_id' => 4774380224,
+    'sale_id' => 9093717691800,
     'tracking_number' => "test"
     );
     try {
@@ -122,7 +122,7 @@ class TestSale extends PHPUnit_Framework_TestCase
   public function testSaleReauth()
   {
     $params = array(
-    'sale_id' => 4774380224
+    'sale_id' => 9093717691800
     );
     try {
       $result = Twocheckout_Sale::reauth($params, 'array');
