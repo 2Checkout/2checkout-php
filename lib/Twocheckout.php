@@ -2,37 +2,53 @@
 
 abstract class Twocheckout
 {
-    public static $user;
-    public static $pass;
-    public static $format = "json";
-    public static $apiBaseUrl = "https://www.2checkout.com/api/";
     public static $sid;
     public static $privateKey;
-    public static $apiUrl;
-    public static $environment;
+    public static $username;
+    public static $password;
+    public static $sandbox;
+    public static $verifySSL = true;
+    public static $baseUrl = 'https://www.2checkout.com';
     public static $error;
-    const VERSION = '0.2.1';
+    public static $format = 'array';
+    const VERSION = '0.3.0';
 
-    static function setCredentials($user, $pass, $mode='', $environment="production")
-    {
-        self::$user = $user;
-        self::$pass = $pass;
-        if ($mode == 'sandbox') {
-            self::$apiBaseUrl = 'https://sandbox.2checkout.com/api/';
-        }
-        self::$environment = $environment;
+    public static function sellerId($value = null) {
+        self::$sid = $value;
     }
 
-    static function setApiCredentials($sid, $privateKey, $mode='', $environment="production")
-    {
-        self::$sid = $sid;
-        self::$privateKey = $privateKey;
-        if ($mode == 'sandbox') {
-            self::$apiUrl = 'https://sandbox.2checkout.com/checkout/api/1/'.$sid.'/rs/authService';
+    public static function privateKey($value = null) {
+        self::$privateKey = $value;
+    }
+
+    public static function username($value = null) {
+        self::$username = $value;
+    }
+
+    public static function password($value = null) {
+        self::$password = $value;
+    }
+
+    public static function sandbox($value = null) {
+        if ($value == 1 || $value == true) {
+            self::$sandbox = true;
+            self::$baseUrl = 'https://sandbox.2checkout.com';
         } else {
-            self::$apiUrl = 'https://www.2checkout.com/checkout/api/1/'.$sid.'/rs/authService';
+            self::$sandbox = false;
+            self::$baseUrl = 'https://www.2checkout.com';
         }
-        self::$environment = $environment;
+    }
+
+    public static function verifySSL($value = null) {
+        if ($value == 0 || $value == false) {
+            self::$verifySSL = false;
+        } else {
+            self::$verifySSL = true;
+        }
+    }
+
+    public static function format($value = null) {
+        self::$format = $value;
     }
 }
 

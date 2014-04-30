@@ -1,7 +1,7 @@
 2Checkout PHP Library
 =====================
 
-This library provides developers with a simple set of bindings to the 2Checkout purchase routine, Instant Notification Service and Back Office API.
+This library provides developers with a simple set of bindings to the 2Checkout Payment API, Hosted Checkout, Instant Notification Service and Admin API.
 
 To use, download or clone the repository.
 
@@ -15,14 +15,44 @@ Require in your php script.
 require_once("/path/to/2checkout-php/lib/Twocheckout.php");
 ```
 
-JSON is returned by default or you can add 'array' as an additional argument to each call to get an Array.
+All methods return an Array by default or you can set the format to 'json' to get a JSON response.
 **Example:**
 ```php
 <?php
-Twocheckout_Charge::auth($args, 'array');
+Twocheckout::format('json');
 ```
 
-Full documentation for each binding is provided in the [Wiki](https://github.com/2checkout/2checkout-php/wiki).
+
+Credentials and Options
+-----------------
+
+Methods are provided to set the following credentials and options.
+
+```php
+<?php
+
+// Your sellerId(account number) and privateKey are required to make the Payment API Authorization call.
+Twocheckout::privateKey('BE632CB0-BB29-11E3-AFB6-D99C28100996');
+Twocheckout::sellerId('901248204');
+
+// Your username and password are required to make any Admin API call.
+Twocheckout::username('testlibraryapi901248204');
+Twocheckout::password('testlibraryapi901248204PASS');
+
+// If you want to turn off SSL verification (Please don't do this in your production environment)
+Twocheckout::verifySSL(false);  // this is set to true by default
+
+// To use your sandbox account set sandbox to true
+Twocheckout::sandbox(true);
+
+// All methods return an Array by default or you can set the format to 'json' to get a JSON response.
+Twocheckout::format('json');
+
+```
+
+
+
+Full documentation for each binding is provided in the [2Checkout Documentation](https://www.2checkout.com/documentation/libraries/php).
 
 Example Purchase API Usage
 -----------------
@@ -31,12 +61,15 @@ Example Purchase API Usage
 
 ```php
 <?php
-Twocheckout::setApiCredentials('1817037', '3508079E-5383-44D4-BF69-DC619C0D9811');
+
+Twocheckout::privateKey('BE632CB0-BB29-11E3-AFB6-D99C28100996');
+Twocheckout::sellerId('901248204');
+
 try {
     $charge = Twocheckout_Charge::auth(array(
-        "sellerId" => "1817037",
+        "sellerId" => "901248204",
         "merchantOrderId" => "123",
-        "token" => 'Y2U2OTdlZjMtOGQzMi00MDdkLWJjNGQtMGJhN2IyOTdlN2Ni',
+        "token" => 'MjFiYzIzYjAtYjE4YS00ZmI0LTg4YzYtNDIzMTBlMjc0MDlk',
         "currency" => 'USD',
         "total" => '10.00',
         "billingAddr" => array(
@@ -59,7 +92,7 @@ try {
             "email" => 'testingtester@2co.com',
             "phoneNumber" => '555-555-5555'
         )
-    ), 'array');
+    ));
     $this->assertEquals('APPROVED', $charge['response']['responseCode']);
 } catch (Twocheckout_Error $e) {
     $this->assertEquals('Unauthorized', $e->getMessage());
@@ -147,9 +180,18 @@ Example Admin API Usage
 
 ```php
 <?php
-Twocheckout::setCredentials("APIuser1817037", "APIpass1817037");
-$args = array('sale_id' => 4834917619);
-Twocheckout_Sale::stop($args, 'array');
+
+Twocheckout::username('testlibraryapi901248204');
+Twocheckout::password('testlibraryapi901248204PASS');
+
+$args = array(
+    'sale_id' => 4834917619
+);
+try {
+    $result = Twocheckout_Sale::stop($args);
+} catch (Twocheckout_Error $e) {
+    $e->getMessage();
+}
 ```
 
 *Example Response:*
@@ -200,11 +242,12 @@ Example Return Usage:
 
 ```php
 <?php
+
 $params = array();
 foreach ($_REQUEST as $k => $v) {
     $params[$k] = $v;
 }
-$passback = Twocheckout_Return::check($params, "tango", 'array');
+$passback = Twocheckout_Return::check($params, "tango");
 ```
 
 *Example Response:*
@@ -223,11 +266,12 @@ Example INS Usage:
 
 ```php
 <?php
+
 $params = array();
 foreach ($_POST as $k => $v) {
     $params[$k] = $v;
 }
-$passback = Twocheckout_Notification::check($params, "tango", 'array');
+$passback = Twocheckout_Notification::check($params, "tango");
 ```
 
 *Example Response:*
@@ -248,18 +292,19 @@ Twocheckout_Error exceptions are thrown by if an error has returned. It is best 
 ```php
 <?php
 
-Twocheckout::setCredentials("APIuser1817037", "APIpass1817037");
+Twocheckout::username('testlibraryapi901248204');
+Twocheckout::password('testlibraryapi901248204PASS');
 
 $params = array(
-'sale_id' => 4774380224,
-'category' => 1,
-'comment' => 'Order never sent.'
+    'sale_id' => 4774380224,
+    'category' => 1,
+    'comment' => 'Order never sent.'
 );
 try {
-  $sale = Twocheckout_Sale::refund($params, 'array');
+    $sale = Twocheckout_Sale::refund($params);
 } catch (Twocheckout_Error $e) {
-  $e->getMessage();
+    $e->getMessage();
 }
 ```
 
-Full documentation for each binding is provided in the [Wiki](https://github.com/2checkout/2checkout-php/wiki).
+Full documentation for each binding is provided in the [2Checkout Documentation](https://www.2checkout.com/documentation/libraries/php).
