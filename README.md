@@ -292,7 +292,8 @@ Twocheckout_Error exceptions are thrown by if an error has returned. It is best 
 ```php
 <?php
 
-Twocheckout::setCredentials("APIuser1817037", "APIpass1817037");
+Twocheckout::username('testlibraryapi901248204');
+Twocheckout::password('testlibraryapi901248204PASS');
 
 $params = array(
     'sale_id' => 4774380224,
