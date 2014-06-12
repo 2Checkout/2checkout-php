@@ -52,9 +52,9 @@ Twocheckout::format('json');
 
 
 
-Full documentation for each binding is provided in the [2Checkout Documentation](https://www.2checkout.com/documentation/libraries/php).
+Full documentation for each binding is provided in the **[wiki](https://github.com/2Checkout/2checkout-php/wiki)**.
 
-Example Purchase API Usage
+Example Payment API Usage
 -----------------
 
 *Example Request:*
@@ -307,4 +307,4 @@ try {
 }
 ```
 
-Full documentation for each binding is provided in the [2Checkout Documentation](https://www.2checkout.com/documentation/libraries/php).
+Full documentation for each binding is provided in the **[wiki](https://github.com/2Checkout/2checkout-php/wiki)**.
