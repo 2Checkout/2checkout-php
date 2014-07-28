@@ -24,6 +24,7 @@ class Twocheckout_Util
 
     public static function objectToArray($object)
     {
+        $object = @mb_convert_encoding($object, 'utf-8', 'utf-8');
         $object = json_decode($object, true);
         $array=array();
         foreach($object as $member=>$data)
