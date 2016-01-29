@@ -53,7 +53,7 @@ class Twocheckout_Util extends Twocheckout
 
         while (isset($invoice['lineitems'][$i])) {
             if ($invoice['lineitems'][$i]['billing']['recurring_status'] == "active") {
-                $lineitemData[$i] = $invoice['lineitems'][$i]['billing']['lineitem_id'];
+                $lineitemData[] = $invoice['lineitems'][$i]['billing']['lineitem_id'];
             }
             $i++;
         };

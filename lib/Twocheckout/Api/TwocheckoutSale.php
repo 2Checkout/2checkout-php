@@ -41,7 +41,6 @@ class Twocheckout_Sale extends Twocheckout
             }
             $lineitemData = Twocheckout_Util::getRecurringLineitems($result);
             if (isset($lineitemData[0])) {
-                $i = 0;
                 $stoppedLineitems = array();
                 foreach( $lineitemData as $value )
                 {
@@ -49,9 +48,8 @@ class Twocheckout_Sale extends Twocheckout
                     $result = $request->doCall($urlSuffix, $params);
                     $result = json_decode($result, true);
                     if ($result['response_code'] == "OK") {
-                        $stoppedLineitems[$i] = $value;
+                        $stoppedLineitems[] = $value;
                     }
-                    $i++;
                 }
                 $result = Twocheckout_Message::message('OK', $stoppedLineitems);
             } else {
