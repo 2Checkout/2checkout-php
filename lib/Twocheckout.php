@@ -11,7 +11,7 @@ abstract class Twocheckout
     public static $baseUrl = 'https://www.2checkout.com';
     public static $error;
     public static $format = 'array';
-    const VERSION = '0.3.0';
+    const VERSION = '0.3.1';
 
     public static function sellerId($value = null) {
         self::$sid = $value;
