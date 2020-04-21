@@ -6,12 +6,11 @@ abstract class Twocheckout
     public static $privateKey;
     public static $username;
     public static $password;
-    public static $sandbox;
     public static $verifySSL = true;
     public static $baseUrl = 'https://www.2checkout.com';
     public static $error;
     public static $format = 'array';
-    const VERSION = '0.3.1';
+    const VERSION = '0.4.0';
 
     public static function sellerId($value = null) {
         self::$sid = $value;
@@ -27,16 +26,6 @@ abstract class Twocheckout
 
     public static function password($value = null) {
         self::$password = $value;
-    }
-
-    public static function sandbox($value = null) {
-        if ($value == 1 || $value == true) {
-            self::$sandbox = true;
-            self::$baseUrl = 'https://sandbox.2checkout.com';
-        } else {
-            self::$sandbox = false;
-            self::$baseUrl = 'https://www.2checkout.com';
-        }
     }
 
     public static function verifySSL($value = null) {
@@ -57,8 +46,6 @@ require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutPayment.php');
 require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutApi.php');
 require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutSale.php');
 require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutProduct.php');
-require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutCoupon.php');
-require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutOption.php');
 require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutUtil.php');
 require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutError.php');
 require(dirname(__FILE__) . '/Twocheckout/TwocheckoutReturn.php');

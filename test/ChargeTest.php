@@ -8,7 +8,7 @@ class TestCharge extends PHPUnit_Framework_TestCase
     public function testChargeForm()
     {
         $params = array(
-            'sid' => '1817037',
+            'sid' => 'your seller id',
             'mode' => '2CO',
             'li_0_name' => 'Test Product',
             'li_0_price' => '0.01'
@@ -19,7 +19,7 @@ class TestCharge extends PHPUnit_Framework_TestCase
     public function testChargeFormAuto()
     {
         $params = array(
-            'sid' => '1817037',
+            'sid' => 'your seller id',
             'mode' => '2CO',
             'li_0_name' => 'Test Product',
             'li_0_price' => '0.01'
@@ -30,11 +30,11 @@ class TestCharge extends PHPUnit_Framework_TestCase
     public function testDirect()
     {
         $params = array(
-            'sid' => '1817037',
+            'sid' => 'your seller id',
             'mode' => '2CO',
             'li_0_name' => 'Test Product',
             'li_0_price' => '0.01',
-            'card_holder_name' => 'Testing Tester',
+            'card_holder_name' => 'John Doe',
             'email' => 'christensoncraig@gmail.com',
             'street_address' => '123 test st',
             'city' => 'Columbus',
@@ -47,13 +47,12 @@ class TestCharge extends PHPUnit_Framework_TestCase
 
     public function testDirectAuto()
     {
-        Twocheckout::sandbox(true);
         $params = array(
-            'sid' => '1817037',
+            'sid' => 'your seller id',
             'mode' => '2CO',
             'li_0_name' => 'Test Product',
             'li_0_price' => '0.01',
-            'card_holder_name' => 'Testing Tester',
+            'card_holder_name' => 'John Doe',
             'email' => 'christensoncraig@gmail.com',
             'street_address' => '123 test st',
             'city' => 'Columbus',
@@ -66,9 +65,8 @@ class TestCharge extends PHPUnit_Framework_TestCase
 
     public function testChargeLink()
     {
-        Twocheckout::sandbox(true);
         $params = array(
-            'sid' => '1817037',
+            'sid' => 'your seller id',
             'mode' => '2CO',
             'li_0_name' => 'Test Product',
             'li_0_price' => '0.01'
@@ -78,19 +76,19 @@ class TestCharge extends PHPUnit_Framework_TestCase
 
     public function testChargeAuth()
     {
-        Twocheckout::privateKey('BE632CB0-BB29-11E3-AFB6-D99C28100996');
-        Twocheckout::sellerId('901248204');
-        Twocheckout::sandbox(true);
+        Twocheckout::privateKey('your private key');
+        Twocheckout::sellerId('your seller id');
 
         try {
             $charge = Twocheckout_Charge::auth(array(
-                "sellerId" => "901248204",
+                "sellerId" => "your seller id",
+                "demo" =>true,
                 "merchantOrderId" => "123",
-                "token" => 'MjFiYzIzYjAtYjE4YS00ZmI0LTg4YzYtNDIzMTBlMjc0MDlk',
+                "token" => 'MDY3OTMwMWUtODg5NS00NmFmLWJhNjgtYjMxYTI1ZjhkOWU3',
                 "currency" => 'USD',
                 "total" => '10.00',
                 "billingAddr" => array(
-                    "name" => 'Testing Tester',
+                    "name" => 'John Doe',
                     "addrLine1" => '123 Test St',
                     "city" => 'Columbus',
                     "state" => 'OH',
@@ -100,7 +98,7 @@ class TestCharge extends PHPUnit_Framework_TestCase
                     "phoneNumber" => '555-555-5555'
                 ),
                 "shippingAddr" => array(
-                    "name" => 'Testing Tester',
+                    "name" => 'John Doe',
                     "addrLine1" => '123 Test St',
                     "city" => 'Columbus',
                     "state" => 'OH',
@@ -110,9 +108,9 @@ class TestCharge extends PHPUnit_Framework_TestCase
                     "phoneNumber" => '555-555-5555'
                 )
             ));
-            $this->assertEquals('APPROVED', $charge['response']['responseCode']);
+            $this->assertSame('APPROVED', $charge['response']['responseCode']);
         } catch (Twocheckout_Error $e) {
-            $this->assertEquals('Bad request - parameter error', $e->getMessage());
+            $this->assertSame('Bad request - parameter error', $e->getMessage());
         }
     }
 }
