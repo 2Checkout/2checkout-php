@@ -15,7 +15,7 @@ class TestNotification extends PHPUnit_Framework_TestCase
             'secret' => 'tango'
         );
         $result = Twocheckout_Notification::check($params, 'tango');
-        $this->assertEquals("Success", $result['response_code']);
+        $this->assertSame("Success", $result['response_code']);
     }
 
 }

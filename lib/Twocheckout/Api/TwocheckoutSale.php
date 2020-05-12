@@ -93,11 +93,4 @@ class Twocheckout_Sale extends Twocheckout
         return Twocheckout_Util::returnResponse($result);
     }
 
-    public static function reauth($params=array()) {
-        $request = new Twocheckout_Api_Requester();
-        $urlSuffix ='/api/sales/reauth';
-        $result = $request->doCall($urlSuffix, $params);
-        return Twocheckout_Util::returnResponse($result);
-    }
-
 }

@@ -14,7 +14,7 @@ class TestReturn extends PHPUnit_Framework_TestCase
             'order_number' => '4774380224'
         );
         $result = Twocheckout_Return::check($params, 'tango');
-        $this->assertEquals("Success", $result['response_code']);
+        $this->assertSame("Success", $result['response_code']);
     }
 
 }
