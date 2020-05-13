@@ -39,15 +39,13 @@ class Twocheckout_Util extends Twocheckout
     }
 
     public static function getRecurringLineitems($saleDetail) {
-        $i = 0;
         $invoiceData = array();
 
-        while (isset($saleDetail['sale']['invoices'][$i])) {
-            $invoiceData[$i] = $saleDetail['sale']['invoices'][$i];
-            $i++;
+        foreach ($saleDetail['sale']['invoices'] as $invoice) {
+            $invoiceData[strtotime($invoice['timestamp'])] = $invoice;
         }
 
-        $invoice = max($invoiceData);
+        $invoice = $invoiceData[max(array_keys($invoiceData))];
         $i = 0;
         $lineitemData = array();
 
