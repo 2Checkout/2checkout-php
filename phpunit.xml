@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="vendor/autoload.php"
+         backupGlobals="true"
+         backupStaticAttributes="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+
+    <testsuites>
+
+        <testsuite name="TcoConfigTest">
+            <file>tests/Tco/Unit/TcoConfigTest.php</file>
+        </testsuite>
+        <testsuite name="TwocheckoutFacadeTest">
+            <file>tests/Tco/Unit/TwocheckoutFacadeTest.php</file>
+        </testsuite>
+        <testsuite name="ApiCoreTest">
+            <file>tests/Tco/Integration/Api/Rest/V6/ApiCoreTest.php</file>
+        </testsuite>
+        <testsuite name="AuthTest">
+            <file>tests/Tco/Integration/Api/Rest/V6/AuthTest.php</file>
+        </testsuite>
+        <testsuite name="OrderDynamicProductTest">
+            <file>tests/Tco/Integration/Api/Rest/V6/OrderDynamicProductTest.php</file>
+        </testsuite>
+        <testsuite name="OrderCatalogProductTest">
+            <file>tests/Tco/Integration/Api/Rest/V6/OrderCatalogProductTest.php</file>
+        </testsuite>
+        <testsuite name="SubscriptionTest">
+            <file>tests/Tco/Integration/Api/Rest/V6/SubscriptionTest.php</file>
+        </testsuite>
+        <testsuite name="Base64Test">
+            <file>tests/Tco/Unit/BuyLinkSignature/Jwt/Encoder/Helper/Base64Test.php</file>
+        </testsuite>
+        <testsuite name="JsonEncoderTest">
+            <file>tests/Tco/Unit/BuyLinkSignature/Jwt/Encoder/Helper/JsonEncoderTest.php</file>
+        </testsuite>
+        <testsuite name="EncodeHS512Test">
+            <file>tests/Tco/Unit/BuyLinkSignature/Jwt/Encoder/EncodeHS512Test.php</file>
+        </testsuite>
+        <testsuite name="BuyLinkSignatureGeneratorTest">
+            <file>tests/Tco/Integration/BuyLinkSignature/BuyLinkSignatureGeneratorTest.php</file>
+        </testsuite>
+        <testsuite name="IpnSignatureTest">
+            <file>tests/Tco/Integration/Ipn/IpnSignatureTest.php</file>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <env name="APP_ENV" value="testing"/>
+    </php>
+
+</phpunit>
