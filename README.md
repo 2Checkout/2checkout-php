@@ -1,4 +1,4 @@
-2Checkout PHP Library
+DEPRECATED!!! This SDK can only be used with the legacy 2Checkout platform which is depreciated. Please use [2checkout-php-sdk](https://github.com/2Checkout/2checkout-php-sdk) with the current 2Checkout platform.
 =====================
 
 This library provides developers with a simple set of bindings to the 2Checkout Payment API, Hosted Checkout, Instant Notification Service and Admin API.
